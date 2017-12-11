@@ -1,10 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>landing</title>
-</head>
-<body>
-landing
-</body>
-</html>
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block nav_class_active_index %}active{% endblock nav_class_active_index %}
+
+{% block title %}Landing{% endblock title %}
+
+{% block name %}<p>Неудачненько</p>{% endblock name %}
+
+{% block content %}
+
+
+   <form class="form-inline text-center" method="post">
+       {% csrf_token %}
+       <div class="form-group">
+           <label>Ваш email</label>
+           <input type="email" name="{{ form.email.name }}" class="form-control">
+       </div>
+       <div class="form-group">
+           <label>Ваше имя</label>
+           <!--<span style="color:black">{{ form.name }}</span>-->
+           <input name="{{ form.name.name }}" class="form-control">
+       </div>
+       <button type="submit" class="btn btn-primary btn-orange">Subscribe</button>
+   </form>
+{% endblock content %}
+
+{% block message %}
+{% if messages %}
+
+    {% for message in messages %}
+    {% if message.tags %}<div  class="alert alert-{{ message.tags }}">{% endif %}{{ message }}</div>
+    {% endfor %}
+
+{% endif %}
+{% endblock message %}
+
+{% block primary %}
+
+         <p>Наш магазин скоро откроется</p>
+         <div >
+             <p style="font-size:20px; line-height:20px;">
+                 Приносим свои извинения, но наш магазин пока закрыт, откроемся как только так сразу.
+             </p>
+         </div>
+
+
+
+
+{% endblock primary %}
